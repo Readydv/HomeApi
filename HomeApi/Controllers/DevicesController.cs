@@ -111,7 +111,7 @@ namespace HomeApi.Controllers
                 new UpdateDeviceQuery(request.NewName, request.NewSerialNumber)
             );
 
-            return StatusCode(200, $"Устройство обновлено! Имя - {device.Name}, Серийный номер - {device.SerialNumber},  Комната подключения - {device.Room.Name}");
+            return StatusCode(200, $"Устройство обновлено! Имя - {device.Name}, Серийный номер - {device.SerialNumber},  Комната подключения - {device.Room.Name}.");
         }
 
         [HttpGet]
