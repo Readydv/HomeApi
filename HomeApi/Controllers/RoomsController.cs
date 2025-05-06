@@ -42,5 +42,21 @@ namespace HomeApi.Controllers
 
             return StatusCode(409, $"Ошибка: Комната {request.Name} уже существует.");
         }
+
+        [HttpPut]
+        [Route("{name}")]
+        public async Task<IActionResult> Edit([FromRoute] string name, [FromBody] EditRoomRequest request)
+        {
+            var existingRoom = await _repository.GetRoomByName(name);
+            if (existingRoom == null)
+                return StatusCode(400, $"Комната с именем {name} не найдена.");
+            existingRoom.Name = request.Name;
+            existingRoom.Area = request.Area;
+            existingRoom.GasConnected = request.GasConnected;
+            existingRoom.Voltage = request.Voltage;
+
+            await _repository.UpdateRoom(existingRoom);
+            return StatusCode(200, $"Комната {name} обновлена.");
+        }
     }
 }

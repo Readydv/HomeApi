@@ -4,6 +4,7 @@ using FluentValidation.AspNetCore;
 using HomeApi;
 using HomeApi.Configuration;
 using HomeApi.Contracts.Devices;
+using HomeApi.Contracts.Models.Rooms;
 using HomeApi.Contracts.Validators;
 using HomeApi.Data;
 using HomeApi.Data.Repos;
@@ -28,6 +29,7 @@ builder.Services.AddFluentValidation(fv =>
     fv.RegisterValidatorsFromAssemblyContaining<AddDeviceRequestValidator>();
 });
 builder.Services.AddScoped<IValidator<AddDeviceRequest>, AddDeviceRequestValidator>();
+builder.Services.AddScoped<IValidator<EditRoomRequest>, EditRoomRequestValidator>();
 
 // === Репозитории ===
 builder.Services.AddSingleton<IDeviceRepository, DeviceRepository>();

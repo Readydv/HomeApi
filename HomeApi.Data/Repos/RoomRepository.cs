@@ -36,5 +36,14 @@ namespace HomeApi.Data.Repos
             
             await _context.SaveChangesAsync();
         }
+
+        ///<summary>
+        ///Изменить комнату
+        ///</summary>
+        public async Task UpdateRoom(Room room)
+        {
+            _context.Rooms.Update(room);
+            await _context.SaveChangesAsync();
+        }
     }
 }
